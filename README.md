@@ -23,3 +23,5 @@ To-Do:
 [x] Implementar filtro para querys en servicios.
 
 [x] Implementar paginación de recyclerViews.
+
+[x] Agregar mas fragmentos/vistas para utilizar el BottomNavigation.
