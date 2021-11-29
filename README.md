@@ -1,7 +1,9 @@
 # TMDB
 Aplicación android con MVVM, Room, Retrofit y Dagger Hilt, coonsumiento la API de TMDB.
 
+
 To-Do:
+
 ☑ Diseño de aplicación con MVVM e inyeccion de depencias con Hilt.
 
 ☑ Mapeo y consumo de servicios de discover, similares y detalle de película/serie.
