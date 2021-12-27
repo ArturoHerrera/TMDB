@@ -1,17 +1,32 @@
 package com.aherrera.tmdb
 
 import android.app.Application
+import android.util.Log
+import androidx.hilt.work.HiltWorkerFactory
+import androidx.work.Configuration
+import com.google.gson.Gson
+import com.heka.compose_utils_kt.LogUtils
+import com.heka.web_helper_kt.WebClientHelper
 import dagger.hilt.android.HiltAndroidApp
-import timber.log.Timber
+import javax.inject.Inject
 
 @HiltAndroidApp
-class MyApplication : Application() {
+class MyApplication : Application(), Configuration.Provider {
+
+    @Inject
+    lateinit var workerFactory: HiltWorkerFactory
 
     override fun onCreate() {
         super.onCreate()
-        if (BuildConfig.DEBUG) {
-            Timber.plant(Timber.DebugTree())
-        }
+
+        LogUtils.logsEnabled = BuildConfig.DEBUG
+        WebClientHelper.bodyInterceptorEnabled = BuildConfig.DEBUG
+    }
+
+    override fun getWorkManagerConfiguration(): Configuration {
+        return Configuration.Builder()
+            .setWorkerFactory(workerFactory)
+            .build()
     }
 
 }

@@ -1,10 +1,13 @@
-package com.aherrera.tmdb.ui.discover
+package com.aherrera.tmdb.ui.backup.discover
 
 import android.util.Log
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.aherrera.tmdb.data.models.Movie
+import com.aherrera.tmdb.data.models.MovieDetailResponse
 import com.aherrera.tmdb.data.repository.MovieRepository
 import com.aherrera.tmdb.data.repository.TvShowRepository
 import com.aherrera.tmdb.utils.FormatedResponse
@@ -17,10 +20,12 @@ class DiscoverViewModel @Inject constructor(
     private val tvShowRepository: TvShowRepository
 ) : ViewModel() {
     var moviePage: Int = 1
+    //val movies = movieRepository.getMovies(moviePage)
     val movies = movieRepository.getMovies(moviePage)
 
     var tvShowPage: Int = 1
     val tvShows = tvShowRepository.getTvShows(tvShowPage)
+
 
     fun getMovies(){
         moviePage+=1

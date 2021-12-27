@@ -10,7 +10,13 @@ import com.aherrera.tmdb.utils.converters.IntArrayListConverter
 import com.aherrera.tmdb.utils.converters.StringArrayListConverter
 
 @Database(
-    entities = [Movie::class, TvShow::class, MovieDetailResponse::class, TvShowDetailResponse::class, SimilarMovie::class, SimilarTvShow::class],
+    entities = [
+        Movie::class, TvShow::class,
+        MovieDetailResponse::class,
+        TvShowDetailResponse::class,
+        SimilarMovie::class,
+        SimilarTvShow::class
+               ],
     version = 1,
     exportSchema = false
 )

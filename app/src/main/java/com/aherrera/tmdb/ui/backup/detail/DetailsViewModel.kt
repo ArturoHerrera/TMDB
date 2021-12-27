@@ -1,7 +1,6 @@
-package com.aherrera.tmdb.ui.detail
+package com.aherrera.tmdb.ui.backup.detail
 
 import android.content.Context
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -10,9 +9,7 @@ import com.aherrera.tmdb.data.repository.MovieRepository
 import com.aherrera.tmdb.data.repository.TvShowRepository
 import com.aherrera.tmdb.utils.FormatedResponse
 import com.aherrera.tmdb.utils.Utils
-import com.google.gson.Gson
 import dagger.hilt.android.lifecycle.HiltViewModel
-import java.util.ArrayList
 import javax.inject.Inject
 
 @HiltViewModel

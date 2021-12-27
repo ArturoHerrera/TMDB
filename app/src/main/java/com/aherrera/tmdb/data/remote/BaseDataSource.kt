@@ -2,7 +2,6 @@ package com.aherrera.tmdb.data.remote
 
 import com.aherrera.tmdb.utils.FormatedResponse
 import retrofit2.Response
-import timber.log.Timber
 
 abstract class BaseDataSource {
 
@@ -21,7 +20,6 @@ abstract class BaseDataSource {
     }
 
     private fun <T> error(message: String): FormatedResponse<T> {
-        Timber.d(message)
         return FormatedResponse.error("La petición falló por la sigueinte razon: $message")
     }
 
