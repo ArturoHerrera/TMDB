@@ -24,6 +24,7 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.aherrera.tmdb.data.models.Movie
+import com.aherrera.tmdb.data.models.TvShow
 import com.aherrera.tmdb.ui.ui.theme.TMDBTheme
 import com.aherrera.tmdb.utils.NetworkImage
 import com.heka.compose_utils_kt.DateTimeUtils
@@ -32,7 +33,7 @@ import com.heka.compose_utils_kt.DateTimeUtils
 fun MediaCardComponent(mMovie: Movie) {
     Card(
         backgroundColor = Color.Gray,
-        modifier = Modifier.fillMaxWidth(),
+        modifier = Modifier.size(140.dp,210.dp),
         elevation = 5.dp
     ) {
         Column(modifier = Modifier.padding(5.dp)) {
@@ -42,6 +43,29 @@ fun MediaCardComponent(mMovie: Movie) {
             )
             Text(
                 text = mMovie.original_title,
+                style = MaterialTheme.typography.h6,
+                color = MaterialTheme.colors.onPrimary,
+                modifier = Modifier.fillMaxWidth(),
+                textAlign = TextAlign.Center
+            )
+        }
+    }
+}
+
+@Composable
+fun MediaCardComponent(txShow: TvShow) {
+    Card(
+        backgroundColor = Color.Gray,
+        modifier = Modifier.size(140.dp,210.dp),
+        elevation = 5.dp
+    ) {
+        Column(modifier = Modifier.padding(5.dp)) {
+            NetworkImage(
+                modifier = Modifier.aspectRatio(0.8f),
+                url = txShow.getPosterUrl(),
+            )
+            Text(
+                text = txShow.name,
                 style = MaterialTheme.typography.h6,
                 color = MaterialTheme.colors.onPrimary,
                 modifier = Modifier.fillMaxWidth(),
