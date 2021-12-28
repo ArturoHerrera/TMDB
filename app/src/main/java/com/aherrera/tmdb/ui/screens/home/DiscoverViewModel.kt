@@ -1,4 +1,4 @@
-package com.aherrera.tmdb.ui.backup.discover
+package com.aherrera.tmdb.ui.screens.home
 
 import android.util.Log
 import androidx.compose.runtime.MutableState

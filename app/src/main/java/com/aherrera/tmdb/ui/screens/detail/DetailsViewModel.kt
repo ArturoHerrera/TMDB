@@ -1,4 +1,4 @@
-package com.aherrera.tmdb.ui.backup.detail
+package com.aherrera.tmdb.ui.screens.detail
 
 import android.content.Context
 import android.util.Log

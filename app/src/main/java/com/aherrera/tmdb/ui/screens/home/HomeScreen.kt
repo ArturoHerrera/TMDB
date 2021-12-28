@@ -1,6 +1,5 @@
 package com.aherrera.tmdb.ui.screens
 
-import android.util.Log
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyRow
@@ -15,7 +14,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.aherrera.tmdb.R
-import com.aherrera.tmdb.ui.backup.discover.DiscoverViewModel
+import com.aherrera.tmdb.ui.screens.home.DiscoverViewModel
 import com.aherrera.tmdb.ui.components.MediaCardComponent
 import com.aherrera.tmdb.ui.ui.theme.DarknesBlack
 import com.aherrera.tmdb.ui.ui.theme.SuperWhite
