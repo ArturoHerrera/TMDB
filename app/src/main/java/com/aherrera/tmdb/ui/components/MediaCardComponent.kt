@@ -20,8 +20,10 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.aherrera.tmdb.data.models.Movie
 import com.aherrera.tmdb.data.models.TvShow
+import com.aherrera.tmdb.ui.ui.theme.DarknesBlack
 import com.aherrera.tmdb.ui.ui.theme.TMDBTheme
 import com.aherrera.tmdb.utils.NetworkImage
 import com.heka.compose_utils_kt.DateTimeUtils
@@ -32,21 +34,39 @@ fun MediaCardComponent(mMovie: Movie, onMediaClick: (Int, String) -> Unit) {
     Card(
         backgroundColor = Color.Gray,
         modifier = Modifier.size(140.dp, 210.dp),
-        elevation = 5.dp,
+        elevation = 8.dp,
         onClick = { onMediaClick(mMovie.id, "movie") }
     ) {
-        Column(modifier = Modifier.padding(5.dp)) {
+        Column() {
             NetworkImage(
-                modifier = Modifier.aspectRatio(0.8f),
+                modifier = Modifier
+                    .aspectRatio(0.8f),
                 url = mMovie.getPosterUrl(),
             )
-            Text(
-                text = mMovie.original_title,
-                style = MaterialTheme.typography.h6,
-                color = MaterialTheme.colors.onPrimary,
-                modifier = Modifier.fillMaxWidth(),
-                textAlign = TextAlign.Center
-            )
+            Box() {
+                Surface(
+                    modifier = Modifier.fillMaxWidth(),
+                    color = DarknesBlack.copy(alpha = 0.7f)
+                ) {
+                    Column(
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        verticalArrangement = Arrangement.Bottom
+                    ) {
+                        Text(
+                            text = mMovie.original_title,
+                            fontSize = 10.sp,
+                            style = MaterialTheme.typography.h6,
+                            color = MaterialTheme.colors.onPrimary,
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .fillMaxHeight()
+                                .padding(start = 0.dp, end = 0.dp, top = 8.dp),
+                            textAlign = TextAlign.Center
+                        )
+                    }
+                }
+            }
+
         }
     }
 }
@@ -60,18 +80,35 @@ fun MediaCardComponent(tvShow: TvShow, onMediaClick: (Int, String) -> Unit) {
         elevation = 5.dp,
         onClick = { onMediaClick(tvShow.id, "tvShow") }
     ) {
-        Column(modifier = Modifier.padding(5.dp)) {
+        Column() {
             NetworkImage(
-                modifier = Modifier.aspectRatio(0.8f),
+                modifier = Modifier
+                    .aspectRatio(0.8f),
                 url = tvShow.getPosterUrl(),
             )
-            Text(
-                text = tvShow.name,
-                style = MaterialTheme.typography.h6,
-                color = MaterialTheme.colors.onPrimary,
-                modifier = Modifier.fillMaxWidth(),
-                textAlign = TextAlign.Center
-            )
+            Box() {
+                Surface(
+                    modifier = Modifier.fillMaxWidth(),
+                    color = DarknesBlack.copy(alpha = 0.7f)
+                ) {
+                    Column(
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        verticalArrangement = Arrangement.Bottom
+                    ) {
+                        Text(
+                            text = tvShow.name,
+                            fontSize = 10.sp,
+                            style = MaterialTheme.typography.h6,
+                            color = MaterialTheme.colors.onPrimary,
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .fillMaxHeight()
+                                .padding(start = 0.dp, end = 0.dp, top = 8.dp),
+                            textAlign = TextAlign.Center
+                        )
+                    }
+                }
+            }
         }
     }
 }

@@ -17,6 +17,8 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.aherrera.tmdb.R
 import com.aherrera.tmdb.ui.backup.detail.DetailsViewModel
 import com.aherrera.tmdb.ui.components.MediaCardComponent
+import com.aherrera.tmdb.ui.ui.theme.DarknesBlack
+import com.aherrera.tmdb.ui.ui.theme.SuperWhite
 import com.aherrera.tmdb.utils.NetworkImage
 
 @ExperimentalMaterialApi
@@ -36,6 +38,7 @@ fun MediaDetailScreen(
 
     Scaffold(
         scaffoldState = scaffoldState,
+        backgroundColor = DarknesBlack
     ) {
         Column {
             when (type) {
@@ -60,10 +63,12 @@ fun MediaDetailScreen(
                                         text = safeData.original_title,
                                         modifier = Modifier.padding(0.dp, 16.dp),
                                         style = MaterialTheme.typography.h6,
-                                        fontWeight = FontWeight.Bold
+                                        fontWeight = FontWeight.Bold,
+                                        color = SuperWhite
                                     )
                                     Text(
-                                        text = safeData.overview
+                                        text = safeData.overview,
+                                        color = SuperWhite
                                     )
                                 }
                             }
@@ -92,11 +97,13 @@ fun MediaDetailScreen(
                                         text = safeData.original_name,
                                         modifier = Modifier.padding(0.dp, 16.dp),
                                         style = MaterialTheme.typography.h6,
-                                        fontWeight = FontWeight.Bold
+                                        fontWeight = FontWeight.Bold,
+                                        color = SuperWhite
                                     )
                                     safeData.overview?.let {
                                         Text(
-                                            text = it
+                                            text = it,
+                                            color = SuperWhite
                                         )
                                     }
 
