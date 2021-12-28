@@ -1,14 +1,18 @@
 package com.aherrera.tmdb.ui
 
+import android.os.Bundle
+import android.util.Log
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
+import androidx.core.os.bundleOf
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.aherrera.tmdb.ui.screens.HomeScreen
+import com.aherrera.tmdb.ui.screens.MediaDetailScreen
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 
 object Destinations {
@@ -16,6 +20,7 @@ object Destinations {
     const val HOME_ROUTE_PARAMS = "home/{mediaType}"
     const val MOVIE_ROUTE = "movie_detail"
     const val TV_SHOW_ROUTE = "tv_show_detail_detail"
+    const val MEDIA_DETAIL = "media_detail"
 }
 
 @ExperimentalAnimationApi
@@ -34,8 +39,19 @@ fun TMDBNavGraph(
     ) {
         composable(Destinations.HOME_ROUTE) { backStackEntry ->
             HomeScreen(
-                navigateToMovie = actions.navigateFromHomeToMovieDetail,
-                navigateToTvShow = actions.navigateFromHomeToTvShowDetail
+                navigateToMediDetail = actions.navigateFromHomeToMediaDetail
+            )
+        }
+        composable(Destinations.MEDIA_DETAIL) {
+            val mediaId = navController.previousBackStackEntry?.arguments?.getInt("mediaId")
+            val type = navController.previousBackStackEntry?.arguments?.getString("type")
+
+            Log.wtf("testArgs", "graph --> id:$mediaId, type:$type")
+
+            MediaDetailScreen(
+                mediaId = mediaId!!,
+                type = type!!,
+                onBack = actions.upPress
             )
         }
     }
@@ -43,15 +59,9 @@ fun TMDBNavGraph(
 
 
 class MainActions(navController: NavHostController) {
-    val navigateFromHomeToMovieDetail: () -> Unit = {
-        navController.navigate("${Destinations.MOVIE_ROUTE}/movie") {
-            popUpTo(Destinations.HOME_ROUTE) { inclusive = true }
-        }
-    }
-    val navigateFromHomeToTvShowDetail: () -> Unit = {
-        navController.navigate("${Destinations.MOVIE_ROUTE}/tvShow") {
-            popUpTo(Destinations.HOME_ROUTE) { inclusive = true }
-        }
+    val navigateFromHomeToMediaDetail: (Int, String) -> Unit = { id, type ->
+        navController.currentBackStackEntry?.arguments = bundleOf("mediaId" to id, "type" to type)
+        navController.navigate(Destinations.MEDIA_DETAIL)
     }
     val upPress: () -> Unit = {
         navController.navigateUp()

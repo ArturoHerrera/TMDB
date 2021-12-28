@@ -2,10 +2,7 @@ package com.aherrera.tmdb.ui.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.Card
-import androidx.compose.material.Icon
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Error
 import androidx.compose.material.icons.outlined.TaskAlt
@@ -29,12 +26,14 @@ import com.aherrera.tmdb.ui.ui.theme.TMDBTheme
 import com.aherrera.tmdb.utils.NetworkImage
 import com.heka.compose_utils_kt.DateTimeUtils
 
+@ExperimentalMaterialApi
 @Composable
-fun MediaCardComponent(mMovie: Movie) {
+fun MediaCardComponent(mMovie: Movie, onMediaClick: (Int, String) -> Unit) {
     Card(
         backgroundColor = Color.Gray,
-        modifier = Modifier.size(140.dp,210.dp),
-        elevation = 5.dp
+        modifier = Modifier.size(140.dp, 210.dp),
+        elevation = 5.dp,
+        onClick = { onMediaClick(mMovie.id, "movie") }
     ) {
         Column(modifier = Modifier.padding(5.dp)) {
             NetworkImage(
@@ -52,20 +51,22 @@ fun MediaCardComponent(mMovie: Movie) {
     }
 }
 
+@ExperimentalMaterialApi
 @Composable
-fun MediaCardComponent(txShow: TvShow) {
+fun MediaCardComponent(tvShow: TvShow, onMediaClick: (Int, String) -> Unit) {
     Card(
         backgroundColor = Color.Gray,
-        modifier = Modifier.size(140.dp,210.dp),
-        elevation = 5.dp
+        modifier = Modifier.size(140.dp, 210.dp),
+        elevation = 5.dp,
+        onClick = { onMediaClick(tvShow.id, "tvShow") }
     ) {
         Column(modifier = Modifier.padding(5.dp)) {
             NetworkImage(
                 modifier = Modifier.aspectRatio(0.8f),
-                url = txShow.getPosterUrl(),
+                url = tvShow.getPosterUrl(),
             )
             Text(
-                text = txShow.name,
+                text = tvShow.name,
                 style = MaterialTheme.typography.h6,
                 color = MaterialTheme.colors.onPrimary,
                 modifier = Modifier.fillMaxWidth(),
@@ -75,6 +76,7 @@ fun MediaCardComponent(txShow: TvShow) {
     }
 }
 
+@ExperimentalMaterialApi
 @Preview("MediaType Card")
 @Composable
 fun PreviewMediaCardComponent() {
@@ -96,7 +98,9 @@ fun PreviewMediaCardComponent() {
                 vote_average = 2.5F,
                 vote_count = 7,
                 page = 0,
-            )
+            ), onMediaClick = { _id, _type ->
+
+            }
         )
     }
 }

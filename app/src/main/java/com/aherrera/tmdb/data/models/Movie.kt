@@ -3,6 +3,7 @@ package com.aherrera.tmdb.data.models
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.aherrera.tmdb.utils.Router
+import kotlinx.android.parcel.Parcelize
 
 @Entity(tableName = "movies")
 data class Movie(

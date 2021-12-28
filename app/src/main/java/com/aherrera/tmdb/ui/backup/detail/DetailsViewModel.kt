@@ -1,6 +1,7 @@
 package com.aherrera.tmdb.ui.backup.detail
 
 import android.content.Context
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -30,6 +31,8 @@ class DetailsViewModel @Inject constructor(
     var similarTvShows: LiveData<FormatedResponse<List<SimilarTvShow>>> = MutableLiveData()
 
     fun requestMediaInfo() {
+        Log.i("testRequest", "ENTRANDO requestMediaInfo")
+        Log.i("testRequest", "requestMediaInfo mediaType: $mediaType, mediaId: $mediaId")
         when (mediaType) {
             "movie" -> {
                 movie = movieRepository.getMovie(mediaId)
